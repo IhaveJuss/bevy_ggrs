@@ -6,10 +6,10 @@ use bevy_ggrs::{
 use bytemuck::{Pod, Zeroable};
 use std::hash::Hash;
 
-const BLUE: Color = Color::rgb(0.8, 0.6, 0.2);
-const ORANGE: Color = Color::rgb(0., 0.35, 0.8);
-const MAGENTA: Color = Color::rgb(0.9, 0.2, 0.2);
-const GREEN: Color = Color::rgb(0.35, 0.7, 0.35);
+const BLUE: Color = Color::srgb(0.8, 0.6, 0.2);
+const ORANGE: Color = Color::srgb(0., 0.35, 0.8);
+const MAGENTA: Color = Color::srgb(0.9, 0.2, 0.2);
+const GREEN: Color = Color::srgb(0.35, 0.7, 0.35);
 const PLAYER_COLORS: [Color; 4] = [BLUE, ORANGE, MAGENTA, GREEN];
 
 const INPUT_UP: u8 = 1 << 0;
@@ -96,10 +96,10 @@ pub fn setup_system(
     // A ground plane
     commands.spawn(PbrBundle {
         mesh: meshes.add(Mesh::from(PlaneMeshBuilder {
-            plane: Plane3d::new(Vec3::Y),
-            half_size: Vec2::splat(PLANE_SIZE / 2.0),
+            plane: Plane3d::new(Vec3::Y, Vec2::splat(PLANE_SIZE / 2.0)),
+            subdivisions: 1
         })),
-        material: materials.add(StandardMaterial::from(Color::rgb(0.3, 0.5, 0.3))),
+        material: materials.add(StandardMaterial::from(Color::srgb(0.3, 0.5, 0.3))),
         ..default()
     });
 
